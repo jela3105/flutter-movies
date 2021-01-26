@@ -59,4 +59,11 @@ class Movie {
     overview = json['overview'];
     releaseDate = json['release_date'];
   }
+  getPosterImg() {
+    if (posterPath == null) {
+      return 'https://secocms.cpa.texas.gov/sca-dev-kilimanjaro/img/no_image_available.jpeg';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    }
+  }
 }
