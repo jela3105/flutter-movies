@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
 
   Widget _swiperCards() {
     return FutureBuilder(
-      future: moviesProvider.getPopular(),
+      future: moviesProvider.getNowPlaying(),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.hasData) {
           return CardSwiper(movies: snapshot.data);
