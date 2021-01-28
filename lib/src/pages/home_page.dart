@@ -55,12 +55,17 @@ class HomePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Popular', style: Theme.of(context).textTheme.subtitle1),
+          Container(
+            padding: EdgeInsets.only(left: 20.0),
+            child:
+                Text('Popular', style: Theme.of(context).textTheme.subtitle1),
+          ),
+          SizedBox(height: 5.0),
           FutureBuilder(
             future: moviesProvider.getPopular(),
-            initialData: [],
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
               if (snapshot.hasData) {
                 return MovieHorizontal(movies: snapshot.data);
               } else {
