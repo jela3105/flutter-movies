@@ -9,11 +9,22 @@ class MovieHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
+
+    final _pageController =
+        new PageController(initialPage: 1, viewportFraction: 0.3);
+
+    _pageController.addListener(() {
+      if (_pageController.position.pixels >=
+          _pageController.position.maxScrollExtent - 200) {
+        print('Load next movies');
+      }
+    });
+
     return Container(
       height: _screenSize.height * 0.22,
       child: PageView(
         pageSnapping: false,
-        controller: PageController(initialPage: 1, viewportFraction: 0.3),
+        controller: _pageController,
         children: _cards(context),
       ),
     );
