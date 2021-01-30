@@ -1,5 +1,7 @@
 import 'package:http/http.dart' as http;
+
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:movies/src/models/movie_model.dart';
 
@@ -8,6 +10,9 @@ class MoviesProvider {
   String _url = 'api.themoviedb.org';
   String _language = 'en-US';
   int _popularPage = 0;
+
+  List<Movie> _popular = new List();
+  final _popularStream = StreamController();
 
   Future<List<Movie>> _processResponse(Uri url) async {
     final resp = await http.get(url);
