@@ -12,7 +12,15 @@ class MoviesProvider {
   int _popularPage = 0;
 
   List<Movie> _popular = new List();
-  final _popularStream = StreamController();
+  final _popularStream = StreamController<List<Movie>>.broadcast();
+
+  Function(List<Movie>) get popularSink => _popularStream.sink.add;
+
+  Stream<List<Movie>> get popularStream => _popularStream.stream;
+
+  void disposeStreams() {
+    _popularStream?.close();
+  }
 
   Future<List<Movie>> _processResponse(Uri url) async {
     final resp = await http.get(url);
@@ -38,6 +46,9 @@ class MoviesProvider {
       'page': _popularPage.toString(),
     });
 
-    return _processResponse(url);
+    final resp = await _processResponse(url);
+    _popular.addAll(resp);
+    popularSink(_popular);
+    return resp;
   }
 }
