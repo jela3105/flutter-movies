@@ -68,7 +68,10 @@ class HomePage extends StatelessWidget {
             stream: moviesProvider.popularStream,
             builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
               if (snapshot.hasData) {
-                return MovieHorizontal(movies: snapshot.data);
+                return MovieHorizontal(
+                  movies: snapshot.data,
+                  nextPage: moviesProvider.getPopular,
+                );
               } else {
                 return CircularProgressIndicator();
               }
