@@ -66,4 +66,12 @@ class Movie {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
     }
   }
+
+  getBackgroundImg() {
+    if (posterPath == null) {
+      return 'https://secocms.cpa.texas.gov/sca-dev-kilimanjaro/img/no_image_available.jpeg';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    }
+  }
 }
