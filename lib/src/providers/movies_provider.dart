@@ -23,13 +23,6 @@ class MoviesProvider {
     _popularStream?.close();
   }
 
-  Future<List<Movie>> _processResponse(Uri url) async {
-    final resp = await http.get(url);
-    final decodedData = json.decode(resp.body);
-    final movies = Movies.fromJsonList(decodedData['results']);
-    return movies.items;
-  }
-
   Future<List<Movie>> getNowPlaying() async {
     final url = Uri.https(_url, '3/movie/now_playing', {
       'api_key': _apikey,
@@ -54,5 +47,12 @@ class MoviesProvider {
     popularSink(_popular);
     _loading = false;
     return resp;
+  }
+
+  Future<List<Movie>> _processResponse(Uri url) async {
+    final resp = await http.get(url);
+    final decodedData = json.decode(resp.body);
+    final movies = Movies.fromJsonList(decodedData['results']);
+    return movies.items;
   }
 }
