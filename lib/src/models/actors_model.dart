@@ -18,4 +18,23 @@ class Actor {
     this.order,
     this.profilePath,
   });
+
+  Actor.fromJsonMap(Map<String, dynamic> json) {
+    castId = json['cast_id'];
+    character = json['character'];
+    creditId = json['credit_id'];
+    gender = json['gender'];
+    id = json['id'];
+    name = json['name'];
+    order = json['order'];
+    profilePath = json['profile_path'];
+  }
+
+  getPhoto(){
+    if(profilePath == null){
+      return 'https://lh3.googleusercontent.com/proxy/270pDrXdyfK6A89laakzAVt4_sQMoXOk_Qc79wCDyHUb71Y6zq_bJsjaqSrl3XYwqUsyAspKp1pku9lB6ihaHuci4UBr-aWy4ZZ9roGynCKS3Wnr1CERqhSRyTbdWvY';
+  }else{
+    return 'https://image.tmdb.org/t/p/w500/$profilePath';
+  }
+
 }
