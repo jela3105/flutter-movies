@@ -59,6 +59,7 @@ class Movie {
     overview = json['overview'];
     releaseDate = json['release_date'];
   }
+
   getPosterImg() {
     if (posterPath == null) {
       return 'https://secocms.cpa.texas.gov/sca-dev-kilimanjaro/img/no_image_available.jpeg';
