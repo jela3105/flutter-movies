@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:movies/src/models/movie_model.dart';
+import 'package:movies/src/providers/movies_provider.dart';
 
 class MovieDetail extends StatelessWidget {
   @override
@@ -13,6 +15,7 @@ class MovieDetail extends StatelessWidget {
             SizedBox(height: 10.0),
             _posterTitle(movie, context),
             _description(context, movie),
+            _casting(movie),
           ]),
         ),
       ]),
@@ -96,4 +99,21 @@ class MovieDetail extends StatelessWidget {
       ),
     );
   }
+
+  Widget _casting(Movie movie) {
+    final moviesProvider = new MoviesProvider();
+
+    return FutureBuilder(
+      future: moviesProvider.getPopular(),
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        if (snapshot.hasData) {
+          _createActorsPageView(snapshot.data);
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
+  void _createActorsPageView(List data) {}
 }
