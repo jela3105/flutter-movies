@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movies/src/models/movie_model.dart';
+import 'package:movies/src/providers/movies_provider.dart';
 
 class DataSearch extends SearchDelegate {
   String selected = '';
+  final moviesProvider = new MoviesProvider();
   final movies = [
     'Spiderman',
     'Aquaman',
@@ -55,23 +58,30 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     // Are the suggest show when the person writes
+    if (query.isEmpty) {
+      return Container();
+    }
 
-    final suggestedList = (query.isEmpty)
-        ? recentMovies
-        : movies
-            .where((m) => m.toLowerCase().startsWith(query.toLowerCase()))
-            .toList();
-
-    return ListView.builder(
-      itemCount: suggestedList.length,
-      itemBuilder: (context, i) {
-        return ListTile(
-          leading: Icon(Icons.movie),
-          title: Text(suggestedList[i]),
-          onTap: () {
-            selected = suggestedList[i];
-            showResults(context);
-          },
+    return FutureBuilder(
+      future: moviesProvider.searchMovie(query),
+      builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
+        if (snapshot.hasData) {
+          final movies = snapshot.data;
+          return ListView(
+            children: movies.map((movie) {
+              return ListTile(
+                leading: FadeInImage(
+                  image: NetworkImage(movie.getPosterImg()),
+                  placeholder: AssetImage('assets/img/no-image.jpg'),
+                ),
+                title: Text(movie.title),
+                subtitle: Text(movie.originalTitle),
+              );
+            }).toList(),
+          );
+        }
+        return Center(
+          child: CircularProgressIndicator(),
         );
       },
     );
