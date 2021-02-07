@@ -17,6 +17,8 @@ class MovieDetail extends StatelessWidget {
             SizedBox(height: 10.0),
             _posterTitle(movie, context),
             _description(context, movie),
+            _description(context, movie),
+            _description(context, movie),
             _casting(movie),
           ]),
         ),
