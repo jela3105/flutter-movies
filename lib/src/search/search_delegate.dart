@@ -70,13 +70,17 @@ class DataSearch extends SearchDelegate {
           return ListView(
             children: movies.map((movie) {
               return ListTile(
-                leading: FadeInImage(
-                  image: NetworkImage(movie.getPosterImg()),
-                  placeholder: AssetImage('assets/img/no-image.jpg'),
-                ),
-                title: Text(movie.title),
-                subtitle: Text(movie.originalTitle),
-              );
+                  leading: FadeInImage(
+                    image: NetworkImage(movie.getPosterImg()),
+                    placeholder: AssetImage('assets/img/no-image.jpg'),
+                  ),
+                  title: Text(movie.title),
+                  subtitle: Text(movie.originalTitle),
+                  onTap: () {
+                    close(context, null);
+                    movie.uniqueId = '';
+                    Navigator.pushNamed(context, 'detail', arguments: movie);
+                  });
             }).toList(),
           );
         }
