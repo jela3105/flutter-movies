@@ -6,6 +6,7 @@ This flutter project uses [The movie Database API](https://developers.themoviedb
 
 
 ## Movie detail and Hero animation
+![HeroAnimation](https://user-images.githubusercontent.com/46289656/107467971-bf785700-6b2c-11eb-9183-2792a300498c.gif)
 
 
 ## Search for a movie 
