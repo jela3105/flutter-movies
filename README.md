@@ -9,3 +9,4 @@ This flutter project uses [The movie Database API](https://developers.themoviedb
 
 
 ## Search for a movie 
+![Search](https://user-images.githubusercontent.com/46289656/107467745-4ed13a80-6b2c-11eb-9b98-be0389505096.gif)
