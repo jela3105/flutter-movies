@@ -2,6 +2,12 @@
 
 This flutter project uses [The movie Database API](https://developers.themoviedb.org/) to get the movies at the cinema and the most popular movies at the moment.
 
+## Quick start
+1. Clone the repo with `git clone https://github.com/jela3105/flutter-movies.git`
+2. `cd qr_app`
+3. Run the command `flutter run` (You must have already flutter intalled) 
+****
+
 ## Card swiper and infinite scroll.
 ![OpenInfiniteScroll](https://user-images.githubusercontent.com/46289656/107469220-f7809980-6b2e-11eb-9d1b-a110066ec19d.gif)
 
